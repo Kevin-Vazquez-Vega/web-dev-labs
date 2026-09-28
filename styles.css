@@ -1,10 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    padding: 24px;
+    background-color: #940f0f;
+    color: white;
+    margin-bottom: 16px;
+}
+
+#main-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    background-color: #3e187c;
+}
+
+#main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+}
+
+#main-nav a:hover {
+    background-color: #14b853
+}
+
 body {
     font-family: Arial, sans-serif;
-    color: #250a58;
+    color: #2e0c6d;
     max-width: 700px;
     margin: 40px auto;
 }
 
 h1 {
     color: #940f0f
+}
+
+header h1 {
+    color: white
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+thead {
+    background-color: #e6f7f4
+}
+
+input, textarea, select {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    margin-bottom: 12px;
 }
