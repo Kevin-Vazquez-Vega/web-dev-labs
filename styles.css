@@ -7,6 +7,25 @@ header {
     background-color: #940f0f;
     color: white;
     margin-bottom: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.image-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #DC2626;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    z-index: 5;
 }
 
 #main-nav {
@@ -20,6 +39,7 @@ header {
     color: white;
     text-decoration: none;
     padding: 12px;
+    transition: background-color 0.2s ease;
 }
 
 #main-nav a:hover {
@@ -61,4 +81,20 @@ input, textarea, select {
     max-width: 400px;
     padding: 8px;
     margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+    #main-nav {
+        flex-direction: column;
+    } 
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    #main-nav {
+        flex-direction: column;
+    }
 }
