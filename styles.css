@@ -28,6 +28,10 @@ header {
     z-index: 5;
 }
 
+#like-btn {
+    margin-top: 12px;
+}
+
 #main-nav {
     display: flex;
     gap: 8px;
@@ -48,9 +52,14 @@ header {
 
 body {
     font-family: Arial, sans-serif;
-    color: #2e0c6d;
+    color: #3c1586;
     max-width: 700px;
     margin: 40px auto;
+}
+
+body.dark {
+    background-color: #1b1127;
+    color: #ff8585;
 }
 
 h1 {
