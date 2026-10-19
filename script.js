@@ -1,8 +1,8 @@
+// Labs Completed Count
 const name = "Kevin";
-let labsCompleted = 6;
+let labsCompleted = 8;
 let isEnrolled = false;
 
-// Labs Completed Count
 labsCompleted = labsCompleted + 1;
 console.log(`${name} has completed ${labsCompleted} labs!`) 
 
@@ -67,3 +67,38 @@ if (likeBtn) {
 } else {
     console.warn("like-btn not found on this page");
 }
+
+function getGreetingAfterDelay() {
+    return new Promise(function(resolve) {
+        setTimeout(function() {
+            resolve("Hello from the future!");
+        }, 800);
+    });
+}
+
+async function showGreeting() {
+    const message = await getGreetingAfterDelay();
+    console.log(message);
+}
+
+showGreeting();
+
+const factBtn = document.querySelector("#fact-btn");
+const factDisplay = document.querySelector("#fact-display");
+
+async function loadFact() {
+    factDisplay.textContent = "Loading...";
+    try {
+        const response = await fetch("https://catfact.ninja/fact");
+        if (!response.ok) {
+            throw new Error("Server responded with an error");
+        }
+        const data = await response.json();
+        factDisplay.textContent = data.fact;
+    } catch (error) {
+        factDisplay.textContent = "Couldn't load a fact right now. Try again.";
+        console.error(error);
+    }
+}
+
+factBtn.addEventListener("click", loadFact);
