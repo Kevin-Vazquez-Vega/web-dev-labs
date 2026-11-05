@@ -3,6 +3,10 @@ const name = "Kevin";
 let labsCompleted = 8;
 let isEnrolled = false;
 
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
+
 labsCompleted = labsCompleted + 1;
 console.log(`${name} has completed ${labsCompleted} labs!`) 
 
@@ -11,15 +15,18 @@ const likeBtn = document.querySelector("#like-btn");
 const likeCount = document.querySelector("#like-count");
 
 const LikeCounter = {
-    likes: 0, 
+    likes: Number(localStorage.getItem("likes")) || 0,
     increment() {
         this.likes = this.likes + 1;
-        updateLikeDisplay();
+        localStorage.setItem("likes", this.likes);
+        this.render();
     },
     render() {
         likeCount.textContent = `${this.likes} likes`;
     }
 };
+
+LikeCounter.render(); // Shows the saved count immediately on load
 
 // Like Messages
 const likeMessage = document.querySelector("#like-message");
@@ -47,6 +54,8 @@ const themeBtn = document.querySelector("#theme-btn");
 
 themeBtn.addEventListener("click", function(){
     document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
 // Goals Array
@@ -102,3 +111,25 @@ async function loadFact() {
 }
 
 factBtn.addEventListener("click", loadFact);
+
+// Geolocation block
+const locationBtn = document.querySelector("#location-btn");
+const locationDisplay = document.querySelector("#location-display");
+
+locationBtn.addEventListener("click", function() {
+    if (!("geolocation" in navigator)) {
+        locationDisplay.textContent = 
+            "Geolocation isn't supported.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude.toFixed(2);
+        const lon = position.coords.longitude.toFixed(2);
+        locationDisplay.textContent = `You are near ${lat}, ${lon}`;
+    }, function(error) {
+        locationDisplay.textContent = 
+            "Location access was denied.";
+        console.warn(error);
+    });
+});
